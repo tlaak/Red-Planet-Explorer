@@ -26,3 +26,25 @@ describe('Robot initialisation', () => {
     done();
   })
 });
+
+describe('Robot orientation change', () => {
+  const steve = new Robot(0, 0, ORIENTATIONS.SOUTH);
+  steve.turnLeft();
+
+  it('should have position 0,0 and orientation to the east', (done) => {
+    expect(steve.posX).to.be(0);
+    expect(steve.posY).to.be(0);
+    expect(steve.orientation).to.be(ORIENTATIONS.EAST);
+    done();
+  })
+
+  const bob = new Robot(0, 0, ORIENTATIONS.WEST);
+  bob.turnRight();
+
+  it('should have position 12,15 and orientation to the north', (done) => {
+    expect(bob.posX).to.be(0);
+    expect(bob.posY).to.be(0);
+    expect(bob.orientation).to.be(ORIENTATIONS.NORTH);
+    done();
+  })
+});
