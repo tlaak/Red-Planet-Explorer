@@ -18,3 +18,7 @@ export const DELIMITERS = {
 export const MOVEMENT = {
   FORWARD: 'F'
 }
+
+export const STATUS = {
+  LOST: 'LOST'
+}
