@@ -8,8 +8,8 @@ describe('Initialising the map', () => {
   const map = new Map(sizeX, sizeY);
 
   it('should init the map based on given size', (done) => {
-    expect(map.coordinates.length).to.eql(sizeX);
-    expect(map.coordinates[0].length).to.eql(sizeY);
+    expect(map.coordinates.length).to.eql(sizeX + 1);
+    expect(map.coordinates[0].length).to.eql(sizeY + 1);
     done();
   });
 });
@@ -25,12 +25,12 @@ describe('Marking the coordinates where robot was lost', () => {
   lostMap.markLost(posX, posY, ORIENTATIONS.SOUTH);
 
   it('should mark the loss of a robot in the coordinates', (done) => {
-    expect(lostMap.coordinates[posX][posY].lostOrientations.length).to.be(2);
+    expect(lostMap.coordinates[posX][posY].length).to.be(2);
     done();
   });
 
   it('should tell which direction robot was moving when it was lost', (done) => {
-    expect(lostMap.coordinates[posX][posY].lostOrientations).to.eql([ORIENTATIONS.EAST, ORIENTATIONS.SOUTH]);
+    expect(lostMap.coordinates[posX][posY]).to.eql([ORIENTATIONS.EAST, ORIENTATIONS.SOUTH]);
     done();
   });
 });
