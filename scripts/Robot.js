@@ -9,14 +9,16 @@ export default class Robot {
 
   // Rotate command found in sequence. Let's rotate!
   rotate(direction) {
-    if (direction === ROTATIONS.RIGHT) {
-      turnRight();
+    switch (direction) {
+      case ROTATIONS.RIGHT:
+        this.turnRight();
+        break;
+      case ROTATIONS.LEFT:
+        this.turnLeft();
+        break;
+      default:
+        throw new Error(`Unknown direction: ${direction}`);
     }
-    if (direction === ROTATIONS.LEFT) {
-      turnLeft();
-    }
-
-    throw new Error(`Unknown direction: ${direction}`);
   }
 
   // Move command found in secuence. Let's move!

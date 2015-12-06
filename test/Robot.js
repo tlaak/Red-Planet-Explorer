@@ -1,5 +1,5 @@
 import Robot from '../scripts/Robot'
-import { ORIENTATIONS } from '../scripts/constants';
+import { ORIENTATIONS, ROTATIONS } from '../scripts/constants';
 import expect from 'expect.js';
 
 describe('Robot initialisation', () => {
@@ -85,7 +85,6 @@ describe('Robot moving south', () => {
   });
 });
 
-
 describe('Robot moving west', () => {
   const robbo = new Robot(10, 10, ORIENTATIONS.WEST);
   robbo.move();
@@ -96,4 +95,23 @@ describe('Robot moving west', () => {
     expect(robbo.orientation).to.be(ORIENTATIONS.WEST);
     done();
   });
+});
+
+describe('Responding to rotation commands', () => {
+  const robbo = new Robot(5, 5, ORIENTATIONS.SOUTH);
+  robbo.rotate(ROTATIONS.RIGHT);
+
+  it('should have orientation to the west', (done) => {
+    expect(robbo.orientation).to.be(ORIENTATIONS.WEST);
+    done();
+  });
+
+  const asimov = new Robot(5, 5, ORIENTATIONS.WEST);
+  asimov.rotate(ROTATIONS.LEFT);
+
+  it('should have orientation to the south', (done) => {
+    expect(asimov.orientation).to.be(ORIENTATIONS.SOUTH);
+    done();
+  });
+
 });
