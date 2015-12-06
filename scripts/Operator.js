@@ -36,41 +36,4 @@ export default class Operator {
       }
     };
   }
-
-  // Create the map based on the given width and height in the input sequence
-  createMap(mapSizeData) {
-    // Check if they are valid
-    if (mapSizeData.length != 2 && !isInt(mapSizeData[0]) && !isInt(mapSizeData[1])) {
-      throw new Error(`Invalid map coordinates: ${mapSize[0]}, ${mapSize[1]}`);
-    }
-    return new Map(...mapSizeData);
-  }
-
-  assignRobots(commands) {
-    const map = this.createMap(commands.map);
-
-    commands.init.forEach((initCommand, index) => {
-      const robot = new Robot(...initCommand);
-      const robotMovementSequence = commands.movement[index];
-      robot.moveSequence(robotMovementSequence);
-    })
-  }
-
-  start() {
-    const inputSequence =
-    `5 3
-    1 1 E
-    RFRFRFRF
-
-    3 2 N
-    FRRFLLFFRRFLL
-
-    0 3 W
-    LLFFFLFLFL`;
-
-    const inputSequenceArray = this.readInputSequenceToArray(inputSequence);
-    const commands = parseCommands(inputSequenceArray);
-    this.assignRobots(commands);
-
-  }
 }
