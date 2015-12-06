@@ -9,3 +9,12 @@ export const ROTATIONS = {
   RIGHT: 'R',
   LEFT: 'L'
 }
+
+export const DELIMITERS = {
+  SPACE: ' ',
+  EMPTY: ''
+}
+
+export const MOVEMENT = {
+  FORWARD: 'F'
+}
