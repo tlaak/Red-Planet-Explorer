@@ -1,6 +1,7 @@
 import Robot from '../scripts/Robot'
 import { ORIENTATIONS, ROTATIONS } from '../scripts/constants';
 import expect from 'expect.js';
+import Map from '../scripts/Map';
 
 describe('Robot initialisation', () => {
 
@@ -97,30 +98,26 @@ describe('Robot moving west', () => {
   });
 });
 
-describe('Responding to rotation commands', () => {
-  const robbo = new Robot(5, 5, ORIENTATIONS.SOUTH);
-  robbo.rotate(ROTATIONS.RIGHT);
-
-  it('should have orientation to the west', (done) => {
-    expect(robbo.orientation).to.be(ORIENTATIONS.WEST);
-    done();
-  });
-
-  const asimov = new Robot(5, 5, ORIENTATIONS.WEST);
-  asimov.rotate(ROTATIONS.LEFT);
-
-  it('should have orientation to the south', (done) => {
-    expect(asimov.orientation).to.be(ORIENTATIONS.SOUTH);
-    done();
-  });
-
-});
-
 describe('Moving a sequence', () => {
-  const robbo = new Robot(1, 1, ORIENTATIONS.EAST);
+  const map = new Map(5, 3);
+  const robbo = new Robot(1, 1, ORIENTATIONS.EAST, map);
 
   it('should move the sequence and return the position', (done) => {
-    expect(robbo.moveSequence('RFRFRFRF')).to.be(undefined);
+    expect(robbo.moveSequence('RFRFRFRF')).to.eql([1, 1, 'E']);
+    done();
+  });
+
+  const asimov = new Robot(3, 2, ORIENTATIONS.NORTH, map);
+
+  it('should get lost', (done) => {
+    expect(asimov.moveSequence('FRRFLLFFRRFLL')).to.eql([3, 3, 'N', 'LOST']);
+    done();
+  });
+
+  const steve = new Robot(0, 3, ORIENTATIONS.WEST, map);
+
+  it('should move the sequence and return the position', (done) => {
+    expect(steve.moveSequence('LLFFFLFLFL')).to.eql([2, 3, 'S']);
     done();
   });
 })
