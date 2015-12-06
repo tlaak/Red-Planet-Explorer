@@ -51,7 +51,7 @@ describe('Robot orientation change', () => {
 
 describe('Robot moving north', () => {
   const robbo = new Robot(10, 10, ORIENTATIONS.NORTH);
-  robbo.move();
+  robbo.moveForward();
 
   it('should have position 0,1 and orientation to the north', (done) => {
     expect(robbo.posX).to.be(10);
@@ -63,7 +63,7 @@ describe('Robot moving north', () => {
 
 describe('Robot moving east', () => {
   const robbo = new Robot(10, 10, ORIENTATIONS.EAST);
-  robbo.move();
+  robbo.moveForward();
 
   it('should have position 11,10 and orientation to the east', (done) => {
     expect(robbo.posX).to.be(11);
@@ -75,7 +75,7 @@ describe('Robot moving east', () => {
 
 describe('Robot moving south', () => {
   const robbo = new Robot(10, 10, ORIENTATIONS.SOUTH);
-  robbo.move();
+  robbo.moveForward();
 
   it('should have position 11,10 and orientation to the east', (done) => {
     expect(robbo.posX).to.be(10);
@@ -87,7 +87,7 @@ describe('Robot moving south', () => {
 
 describe('Robot moving west', () => {
   const robbo = new Robot(10, 10, ORIENTATIONS.WEST);
-  robbo.move();
+  robbo.moveForward();
 
   it('should have position 9,10 and orientation to the west', (done) => {
     expect(robbo.posX).to.be(9);
@@ -115,3 +115,12 @@ describe('Responding to rotation commands', () => {
   });
 
 });
+
+describe('Moving a sequence', () => {
+  const robbo = new Robot(1, 1, ORIENTATIONS.EAST);
+
+  it('should move the sequence and return the position', (done) => {
+    expect(robbo.moveSequence('RFRFRFRF')).to.be(undefined);
+    done();
+  });
+})

@@ -1,4 +1,4 @@
-import { ORIENTATIONS, ROTATIONS } from './constants';
+import { ORIENTATIONS, ROTATIONS, DELIMITERS, MOVEMENT } from './constants';
 
 export default class Robot {
   constructor(posX = 0, posY = 0, orientation = ORIENTATIONS.NORTH) {
@@ -9,6 +9,7 @@ export default class Robot {
 
   // Rotate command found in sequence. Let's rotate!
   rotate(direction) {
+    console.log(`Rotating to ${direction}`);
     switch (direction) {
       case ROTATIONS.RIGHT:
         this.turnRight();
@@ -21,8 +22,29 @@ export default class Robot {
     }
   }
 
-  // Move command found in secuence. Let's move!
-  move() {
+  // Parse command sequence and turn or move the robot
+  moveSequence(sequence) {
+    const moveCommands = sequence.split(DELIMITERS.EMPTY);
+    moveCommands.forEach((command) => {
+      switch (command) {
+        case ROTATIONS.RIGHT:
+          this.turnRight();
+          break;
+        case ROTATIONS.LEFT:
+          this.turnLeft();
+          break;
+        case MOVEMENT.FORWARD:
+          this.moveForward();
+          break;
+        default:
+          throw new Error(`Unknown movement command ${command}`);
+      }
+    })
+  }
+
+  // Let's move!
+  moveForward() {
+    console.log(`Moving to ${this.orientation}`);
     switch (this.orientation) {
       case ORIENTATIONS.NORTH:
         this.posY++;
