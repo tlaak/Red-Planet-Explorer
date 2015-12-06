@@ -18,8 +18,24 @@ export default class Robot {
     throw new Error(`Unknown direction: ${direction}`);
   }
 
-  move(currentPosition) {
-
+  // Move command found in secuence. Let's move!
+  move() {
+    switch (this.orientation) {
+      case ORIENTATIONS.NORTH:
+        this.posY++;
+        break;
+      case ORIENTATIONS.WEST:
+        this.posX--;
+        break;
+      case ORIENTATIONS.SOUTH:
+        this.posY--;
+        break;
+      case ORIENTATIONS.EAST:
+        this.posX++;
+        break;
+      default:
+        throw new Error(`Unknown orientation ${this.orientation}`);
+    }
   }
 
   turnLeft() {

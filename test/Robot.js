@@ -48,3 +48,52 @@ describe('Robot orientation change', () => {
     done();
   })
 });
+
+describe('Robot moving north', () => {
+  const robbo = new Robot(10, 10, ORIENTATIONS.NORTH);
+  robbo.move();
+
+  it('should have position 0,1 and orientation to the north', (done) => {
+    expect(robbo.posX).to.be(10);
+    expect(robbo.posY).to.be(11);
+    expect(robbo.orientation).to.be(ORIENTATIONS.NORTH);
+    done();
+  });
+});
+
+describe('Robot moving east', () => {
+  const robbo = new Robot(10, 10, ORIENTATIONS.EAST);
+  robbo.move();
+
+  it('should have position 11,10 and orientation to the east', (done) => {
+    expect(robbo.posX).to.be(11);
+    expect(robbo.posY).to.be(10);
+    expect(robbo.orientation).to.be(ORIENTATIONS.EAST);
+    done();
+  });
+});
+
+describe('Robot moving south', () => {
+  const robbo = new Robot(10, 10, ORIENTATIONS.SOUTH);
+  robbo.move();
+
+  it('should have position 11,10 and orientation to the east', (done) => {
+    expect(robbo.posX).to.be(10);
+    expect(robbo.posY).to.be(9);
+    expect(robbo.orientation).to.be(ORIENTATIONS.SOUTH);
+    done();
+  });
+});
+
+
+describe('Robot moving west', () => {
+  const robbo = new Robot(10, 10, ORIENTATIONS.WEST);
+  robbo.move();
+
+  it('should have position 9,10 and orientation to the west', (done) => {
+    expect(robbo.posX).to.be(9);
+    expect(robbo.posY).to.be(10);
+    expect(robbo.orientation).to.be(ORIENTATIONS.WEST);
+    done();
+  });
+});
