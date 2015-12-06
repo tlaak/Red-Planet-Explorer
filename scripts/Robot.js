@@ -7,6 +7,7 @@ export default class Robot {
     this.orientation = orientation;
   }
 
+  // Rotate command found in sequence. Let's rotate!
   rotate(direction) {
     if (direction === ROTATIONS.RIGHT) {
       turnRight();
@@ -38,6 +39,7 @@ export default class Robot {
     }
   }
 
+  // Turn the robot left based on the current orientation
   turnLeft() {
     switch (this.orientation) {
       case ORIENTATIONS.NORTH:
@@ -57,6 +59,7 @@ export default class Robot {
     }
   }
 
+  // Turn the robot right based on the current orientation
   turnRight() {
     switch (this.orientation) {
       case ORIENTATIONS.NORTH:
