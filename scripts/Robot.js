@@ -15,7 +15,6 @@ export default class Robot {
   // Parse command sequence and turn or move the robot
   moveSequence(sequence) {
     const moveCommands = sequence.split(DELIMITERS.EMPTY);
-    let robotIsLost = false;
 
     // Using for because forEach doesn't support break
     for (let x = 0; x < moveCommands.length; x++) {
